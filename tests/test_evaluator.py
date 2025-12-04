@@ -27,12 +27,15 @@ add(3, 4)
 
 def test_if_else():
     ev = Evaluator()
+    out = []
+    ev.global_env.set('print', lambda *a: out.append(' '.join(map(str, a))))
     src = """if (1 < 2)
-  10
+  print(10)
 else
-  20
+  print(20)
 """
-    assert ev.run_source(src) == 10
+    ev.run_source(src)
+    assert out == ['10']
 
 
 def test_print_capture():
