@@ -29,6 +29,16 @@ Run tests (if pytest is installed):
 python -m pytest -q
 ```
 
+Continuous Integration
+
+This repository includes a GitHub Actions workflow that runs the test suite on pushes and pull requests.
+
+You can view workflow runs on the repository's Actions tab.
+
+Badge
+
+![CI](https://github.com/drfletcher21/ecoscript/actions/workflows/ci.yml/badge.svg)
+
 Contributing
 
 See `CONTRIBUTING.md` for contribution guidelines.
