@@ -1,0 +1,9 @@
+[project]
+name = "ecoscript"
+version = "0.1.0"
+description = "EcoScript language prototype and interpreter"
+readme = "README.md"
+requires-python = ">=3.10"
+
+[tool.pytest]
+addopts = "-q"

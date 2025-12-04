@@ -1,0 +1,12 @@
+{
+  "name": "ecoscript-ide",
+  "version": "0.1.0",
+  "description": "Minimal Electron+Monaco skeleton for EcoScript (prototype)",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "devDependencies": {
+    "electron": "^26.0.0"
+  }
+}

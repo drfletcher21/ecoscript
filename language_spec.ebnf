@@ -1,0 +1,48 @@
+// EcoScript EBNF (informal)
+
+program     ::= statement*
+
+statement   ::= let_stmt
+              | function_decl
+              | print_stmt
+              | if_stmt
+              | while_stmt
+              | return_stmt
+              | expression_stmt
+
+let_stmt    ::= ("let" | "var" | "const") IDENT ["=" expression] [";"]
+
+function_decl ::= "function" IDENT "(" [param_list] ")" block
+param_list  ::= IDENT ("," IDENT)*
+
+print_stmt  ::= "print" "(" expression ")" [";"]
+
+if_stmt     ::= "if" "(" expression ")" block ["else" block]
+while_stmt  ::= "while" "(" expression ")" block
+return_stmt ::= "return" [expression] [";"]
+
+block       ::= "{" statement* "}"
+              | NEWLINE INDENT statement* DEDENT
+
+expression  ::= logical_or
+logical_or  ::= logical_and ("||" logical_and)*
+logical_and ::= equality ("&&" equality)*
+equality   ::= comparison (("==" | "!=") comparison)*
+comparison ::= term (("<" | ">" | "<=" | ">=") term)*
+term       ::= factor (("+" | "-") factor)*
+factor     ::= unary (("*" | "/" | "%") unary)*
+unary      ::= ("-" | "!") unary | primary
+primary    ::= NUMBER | STRING | IDENT ["(" [arg_list] ")"] | "(" expression ")"
+
+arg_list   ::= expression ("," expression)*
+
+// Tokens
+IDENT       ::= /[A-Za-z_][A-Za-z0-9_]*/
+NUMBER      ::= /[0-9]+(\.[0-9]+)?/
+STRING      ::= /"([^"\\]|\\.)*"/ | /'([^'\\]|\\.)*'/
+NEWLINE, INDENT, DEDENT as emitted by line-based tokenizer
+
+// Notes:
+// - EcoScript uses indentation-aware blocks similar to Python, but also supports explicit { } blocks.
+// - Variable declarations are immutable if using `const` (not enforced in MVP yet).
+// - Assignment is performed via `let` declarations in MVP; future work will add reassignment operators.
