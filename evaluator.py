@@ -135,7 +135,7 @@ class Evaluator:
 
     def eval_WhileStmt(self, node: WhileStmt, env: Environment):
         while self.eval(node.condition, env):
-            res = self.eval_Block(node.body, env)
+            self.eval_block(node.body, env)
         return None
 
     def eval_FunctionDecl(self, node: FunctionDecl, env: Environment):
