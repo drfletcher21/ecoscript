@@ -1,48 +1,71 @@
-# EcoScript — Minimal MVP
+# EcoScript
 
-EcoScript is a small educational language and prototype interpreter (MVP) focused on clear syntax and an indentation-aware block structure similar to Python.
+![status](https://img.shields.io/badge/status-alpha-brightgreen)  
+![EcoScript logo](assets/logo.svg)
 
-This repository contains a minimal interpreter written in Python:
+About
+EcoScript is a lightweight domain-specific language (DSL) and runtime for building, running, and sharing small ecological and environmental models, reproducible simulation workflows, and data-processing pipelines. It focuses on human-readable scripts, sensible defaults for common ecological tasks, and simple export and visualization helpers for rapid prototyping and teaching.
 
-- `tokenizer.py` — line-based tokenizer that emits INDENT/DEDENT/NEWLINE tokens
-- `parser.py` — recursive-descent parser producing a small AST
-- `evaluator.py` — evaluator / runtime with an `Environment` and builtin functions
-- `cli.py` — small CLI to run scripts or drop into a REPL
+Repository short description (for GitHub About / tagline)
+Lightweight DSL + runner for ecological models, simulations, and exportable results
+
+Why EcoScript
+EcoScript is designed for anyone who wants to express environmental models or small simulations in a compact, readable format without the overhead of a heavyweight framework. Typical uses:
+- Quick prototyping of population, growth, and resource-consumption models
+- Teaching simulation concepts with simple, reproducible scripts
+- Small analysis pipelines that export CSV/JSON and quick plots for exploration
+
+Key goals:
+- Make it quick to write small ecosystem / environment scripts
+- Provide sensible defaults and helpful diagnostics for new users
+- Enable exporting results, plots, and simple visualizations
+- Keep the runtime lightweight and easy to embed in other tools
+
+Features
+- Compact, readable script syntax for describing ecological models, workflows, and data transforms
+- CLI runner to validate and execute scripts
+- Exportable results in CSV/JSON and quick plotting helpers
+- Extensible plugin points for custom steps, visualization, and I/O
+
+Architecture
+![architecture](assets/architecture.svg)
 
 Getting started
 
-Requirements: Python 3.10+ (recommended)
-
-Run the CLI (from the project root `C:\ecoscript`):
-
-```powershell
-# run a script
-python cli.py path\to\script.eco
-
-# start REPL
-python cli.py --repl
+1. Install (example; replace with real install steps when available)
+```bash
+# install from source (example)
+git clone https://github.com/drfletcher21/ecoscript.git
+cd ecoscript
+# follow project-specific install steps (e.g. pip install -e . or npm install)
 ```
 
-Run tests (if pytest is installed):
+2. Example script (save as example.ecos)
+```text
+# example.ecos
+model "simple-plant" {
+  param growth_rate = 0.1
+  param mortality = 0.01
 
-```powershell
-python -m pytest -q
+  step simulate for 100 days {
+    # simulate growth & mortality
+  }
+}
 ```
 
-Continuous Integration
+3. Run
+```bash
+ecoscript run example.ecos --output results.csv
+```
 
-This repository includes a GitHub Actions workflow that runs the test suite on pushes and pull requests.
-
-You can view workflow runs on the repository's Actions tab.
-
-Badge
-
-![CI](https://github.com/drfletcher21/ecoscript/actions/workflows/ci.yml/badge.svg)
+Images and assets
+- This repository will include `assets/logo.svg` and `assets/architecture.svg` referenced above.
+- If you prefer embedded data URIs instead of separate files I can switch to that.
 
 Contributing
-
-See `CONTRIBUTING.md` for contribution guidelines.
+- Open issues for bugs and feature requests
+- Fork, create a branch, add tests/examples, then open a pull request
+- Follow the code style and include a short description in PRs
 
 License
-
-This project uses the MIT License. See `LICENSE` for details.
+- This repository is licensed under the MIT License. See the LICENSE file for details.
